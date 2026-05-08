@@ -13,9 +13,10 @@ return new class extends Migration
     {
             Schema::create('tarifs', function (Blueprint $table) {
             $table->id();
-            $table->integer('inscription');
-            $table->integer('mensualite');
-            $table->foreignId('classe_id')->constrained();
+            $table->integer('montant');
+            $table->foreignId('filiere_id')->constrained();
+            $table->foreignId('niveau_id')->constrained();
+            $table->foreignId('annee_academique_id')->constrained();
             $table->timestamps();
         });
     }

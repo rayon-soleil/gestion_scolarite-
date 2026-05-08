@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Service;
+namespace App\Service; 
 
-use App\Models\Tarif; // Vérifie que ton Model Tarif existe bien ici
+use App\Models\Tarifs;
 
 class TarifService
 {
     public function create(array $data)
     {
-        // On remplace TarifService:: par Tarif::
-        return TarifService::updateOrCreate(
+        // On appelle bien le modèle Tarifs (avec un 's')
+        return Tarifs::updateOrCreate(
             [
                 'filiere_id' => $data['filiere_id'],
                 'niveau_id' => $data['niveau_id'],

@@ -4,18 +4,18 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class tarifs extends Model
+class Tarifs extends Model
 {
     protected $table = 'tarifs';
 
     protected $fillable = [
-        'classe_id',
-        'inscription',
-        'mensualite',
-
+        'filiere_id',
+        'niveau_id',
+        'annee_academique_id',
+        'montant',
     ];
 
     public function classe() {
-        return $this->belongsTo(classe::class, 'classe_id');
+        return $this->belongsTo(Classe::class, 'classe_id');
     }
 }   

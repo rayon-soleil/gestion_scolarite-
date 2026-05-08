@@ -2,12 +2,14 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory; // 1. Importe le trait
 use Illuminate\Database\Eloquent\Model;
 
 class AnneeAcademique extends Model
 {
-    // Nom de la table si elle diffère du pluriel du modèle
-    protected $table = 'Annee_Academiques';
+    use HasFactory; // 2. Utilise le trait ici
+
+    protected $table = 'Annee_Academiques'; // Vérifie bien le nom de ta table
 
     protected $fillable = [
         'code',
@@ -17,10 +19,4 @@ class AnneeAcademique extends Model
         'dateFinInscription',
         'statut'
     ];
-
-   // Vérifie si l'année est encore modifiable (Consigne Prof)
-    public function estModifiable()
-    {
-        return $this->statut === 'BROUILLON';
-    }
 }
