@@ -1,0 +1,35 @@
+version: '3.8'
+services:
+# Image 1 : L'application Laravel + Serveur Web
+app:
+build: .
+container_name: scolarite-app
+ports:
+- "8000:80"
+volumes:
+- .:/var/www/html
+networks:
+- scolarite-network
+
+depends_on:
+- mysql
+# Image 2 : La base de données MySQL
+mysql:
+image: mysql:8.0
+container_name: scolarite-db
+restart: always
+environment:
+MYSQL_DATABASE: gestion_scolarite
+MYSQL_ROOT_PASSWORD: root
+networks:
+- scolarite-network
+# Image 3 : Image PHP CLI dédiée (pour les tâches de fond)
+php-tasks:
+image: php:8.2-cli
+volumes:
+- .:/var/www/html
+networks:
+- scolarite-network
+networks:
+scolarite-network:
+driver: bridge
